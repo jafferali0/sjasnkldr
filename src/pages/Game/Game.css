@@ -1,0 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h2 {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.controls {
+  width: 28%;
+  height: 100vh;
+  justify-self: start;
+  align-self: center;
+  padding: 8px;
+}
+
+.log-area {
+  margin-top: 30px;
+  background-color: lightgray;
+  height: 40vh;
+  text-align: center;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.log-records {
+  background-color: white;
+  height: 80%;
+  width: 90%;
+  overflow-y: scroll;
+}
+
+.score {
+  height: 10vh;
+}
+
+.pawns {
+  border: 1.5px solid lightgray;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  height: 35vh;
+}
+
+.pawn-place {
+  border: 1.5px solid lightgray;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: gray;
+  flex-direction: column;
+}
+
+.board-area {
+  width: 100%;
+  height: 100vh;
+  background-color: lightgray;
+  display: flex;
+  justify-self: end;
+  align-self: center;
+  z-index: -1;
+  /* overflow: hidden; */
+}
+
+.ladders-area {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-self: end;
+  align-self: center;
+  top: 0;
+  right: 0;
+  position: absolute;
+  overflow: hidden;
+}
+
+.pawns-area {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-self: end;
+  align-self: center;
+  top: 0;
+  right: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.dice-area {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  position: relative;
+}
+
+.player-term {
+  color: black;
+  font-weight: bolder;
+}
+
+.player-pawn {
+  width: 35px;
+  height: 50px;
+  position: absolute;
+  transition: 1s ease;
+}
+
+.black-screen {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  z-index: 20;
+}

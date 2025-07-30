@@ -1,0 +1,6 @@
+.snake {
+    position: absolute;
+}
+.rotate180 {
+    transform: rotate(90deg);
+}

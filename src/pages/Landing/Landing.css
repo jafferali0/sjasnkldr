@@ -1,0 +1,36 @@
+.form {
+  height: 100vh;
+  border: 3px solid lightgray;
+  width: 60%;
+}
+
+h1 {
+  text-align: center;
+}
+
+.form-field {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  justify-content: space-between;
+  justify-self: center;
+  margin-top: 16px;
+}
+
+.input-label {
+  width: 50%;
+  font-size: larger;
+  font-weight: 400;
+}
+
+.input-box {
+  width: 50%;
+  padding: 4px;
+}
+.gen-btn {
+  margin: 0px 30px;
+  padding: 8px;
+  cursor: pointer;
+}

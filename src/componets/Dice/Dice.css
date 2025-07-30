@@ -1,0 +1,30 @@
+.dice-play {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dash {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gifdice {
+  width: 150px;
+  height: 150px;
+}
+
+.pointer {
+    animation: pointing 1s infinite;
+}
+
+@keyframes pointing {
+    from {
+        transform: rotate(0deg);
+    } to {
+        transform: rotate(90deg);
+    }
+}

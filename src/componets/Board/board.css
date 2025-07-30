@@ -1,0 +1,18 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  width: 100%;
+  margin: 30px; 
+  border: 1.5px solid black;
+}
+
+.cell {
+  border: 1.5px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.number {
+    opacity: 0.2;
+}
