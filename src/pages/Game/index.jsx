@@ -18,12 +18,14 @@ import Snake6 from "../../componets/snakes/Snake6";
 function Game() {
   // const [playerPos, setPlayerPos] = useState(100);
   const [showDice, setShowDice] = useState(true);
+  const [currentTurn, setCurrentTurn] = useState(0);
   // const [randomChoice, setRandomChoice] = useState();
   const [xPos, setXPos] = useState();
   const [yPos, setYPos] = useState();
 
   const {
     players,
+    setPlayers,
     roomId,
     playerPos,
     setPlayerPos,
@@ -44,12 +46,39 @@ function Game() {
     }, 1000);
   }
 
-  function move() {
-    setPlayerPos((prev) => prev - random > 0 && prev - random);
+  function move(...optMove) {
+    let newVal;
+    let temp = [...players];
+    if (optMove && optMove.length > 0) {
+      newVal = optMove[0];
+    } else {
+      newVal = temp[currentTurn].currentPosition - random;
+    }
+    const pos = getPositionXY(document.getElementById(newVal));
+    temp[currentTurn] = {
+      ...temp[currentTurn],
+      currentPosition: newVal >= 0 && newVal,
+      posX: pos.X,
+      posY: pos.Y,
+    };
+    setPlayers(temp);
     setTimeout(() => {
-      checkLaddednSnake(playerPos - random);
+      if (optMove.length == 0 && !optMove[0]) {
+        checkLaddednSnake(newVal);
+      }
+      setCurrentTurn(currentTurn + 1 !== players.length ? currentTurn + 1 : 0);
       setShowDice(true);
+      if(newVal == 0) {
+        alert("Game Over")
+      }
     }, 1000);
+
+    // setPlayerPos((prev) => prev - random > 0 && prev - random);
+    // setTimeout(() => {
+    //   checkLaddednSnake(playerPos - random);
+    //   setShowDice(true);
+    //   setCurrentTurn(currentTurn + 1 !== players.length ? currentTurn + 1 : 0);
+    // }, 1000);
   }
 
   function getPositionXY(element) {
@@ -66,67 +95,83 @@ function Game() {
   function checkLaddednSnake(position) {
     switch (position) {
       case 89: {
-        setPlayerPos(() => 52);
+        move(52);
+        // setPlayerPos(() => 52);
         break;
       }
       case 53: {
-        setPlayerPos(() => 8);
+        move(8);
+        // setPlayerPos(() => 8);
         break;
       }
       case 95: {
-        setPlayerPos(() => 73);
+        move(73);
+        // setPlayerPos(() => 73);
         break;
       }
       case 45: {
-        setPlayerPos(() => 16);
+        move(16);
+        // setPlayerPos(() => 16);
         break;
       }
       case 64: {
-        setPlayerPos(() => 24);
+        move(24);
+        // setPlayerPos(() => 24);
         break;
       }
       case 40: {
-        setPlayerPos(() => 18);
+        move(18);
+        // setPlayerPos(() => 18);
         break;
       }
       case 2: {
-        setPlayerPos(() => 3);
+        move(3);
+        // setPlayerPos(() => 3);
         break;
       }
       case 39: {
-        setPlayerPos(() => 78);
+        move(78);
+        // setPlayerPos(() => 78);
         break;
       }
       case 68: {
-        setPlayerPos(() => 94);
+        move(94);
+        // setPlayerPos(() => 94);
         break;
       }
       case 49: {
-        setPlayerPos(() => 69);
+        move(69);
+        // setPlayerPos(() => 69);
         break;
       }
       case 29: {
-        setPlayerPos(() => 30);
+        move(30);
+        // setPlayerPos(() => 30);
         break;
       }
       case 65: {
-        setPlayerPos(() => 97);
+        move(97);
+        // setPlayerPos(() => 97);
         break;
       }
       case 34: {
-        setPlayerPos(() => 55);
+        move(55);
+        // setPlayerPos(() => 55);
         break;
       }
       case 4: {
-        setPlayerPos(() => 24);
+        move(24);
+        // setPlayerPos(() => 24);
         break;
       }
       case 58: {
-        setPlayerPos(() => 83);
+        move(83);
+        // setPlayerPos(() => 83);
         break;
       }
       case 21: {
-        setPlayerPos(() => 41);
+        move(41);
+        // setPlayerPos(() => 41);
         break;
       }
     }
@@ -137,7 +182,7 @@ function Game() {
       <div className="controls">
         <h2>Snake 🐍 And Ladder 🪜</h2>
         <div className="log-area">
-          <h3 className="player-term">Player 1 Turn</h3>
+          <h3 className="player-term">{players[currentTurn].name} Turn</h3>
           <div className="log-records">
             <div className="dice-area" onClick={() => showDice && getRandom()}>
               <Dice />
@@ -212,11 +257,23 @@ function Game() {
           <Snake6 props={{ top: "30vh", left: "2%" }} />
         </div>
         <div id="pawnsArea" className="pawns-area">
-          <img
+          {/* <img
             src="/p1.png"
             className="player-pawn"
             style={{ left: `${xPos - 300}px`, top: `${yPos - 20}px` }}
-          />
+          /> */}
+          {players.map((ele, idx) => {
+            return (
+              <img
+                src={`/p${idx + 1}.png`}
+                className="player-pawn"
+                style={{
+                  left: `${ele.posX - 300}px`,
+                  top: `${ele.posY - 20}px`,
+                }}
+              />
+            );
+          })}
         </div>
       </div>
     </div>

@@ -60,9 +60,10 @@ export default function Landing() {
                     temp[idx] = {
                       ...temp[idx],
                       ["player" + (idx + 1)]: e.target.value,
+                      name: e.target.value,
                       id: idx + 1,
-                      posX: 0,
-                      posY: 0,
+                      posX: 362,
+                      posY: 509.53125,
                       currentPosition: 100,
                     };
                     setPlayers(temp);
