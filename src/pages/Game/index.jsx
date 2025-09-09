@@ -54,22 +54,24 @@ function Game() {
     } else {
       newVal = temp[currentTurn].currentPosition - random;
     }
-    const pos = getPositionXY(document.getElementById(newVal));
-    temp[currentTurn] = {
-      ...temp[currentTurn],
-      currentPosition: newVal >= 0 && newVal,
-      posX: pos.X,
-      posY: pos.Y,
-    };
-    setPlayers(temp);
+    if (newVal > 0) {
+      const pos = getPositionXY(document.getElementById(newVal));
+      temp[currentTurn] = {
+        ...temp[currentTurn],
+        currentPosition: newVal,
+        posX: pos.X,
+        posY: pos.Y,
+      };
+      setPlayers(temp);
+    }
     setTimeout(() => {
       if (optMove.length == 0 && !optMove[0]) {
         checkLaddednSnake(newVal);
       }
       setCurrentTurn(currentTurn + 1 !== players.length ? currentTurn + 1 : 0);
       setShowDice(true);
-      if(newVal == 0) {
-        alert("Game Over")
+      if (newVal == 1) {
+        alert("Game Over");
       }
     }, 1000);
 
